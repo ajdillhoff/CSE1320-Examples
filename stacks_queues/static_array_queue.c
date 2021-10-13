@@ -19,6 +19,11 @@ void enqueue(int queue[], int *size, int data) {
 }
 
 int dequeue(int queue[], int *size) {
+    if (*size == 0) {
+        printf("Nothing to dequeue!\n");
+        return 0;
+    }
+
     (*size)--;
 
     return queue[*size];
