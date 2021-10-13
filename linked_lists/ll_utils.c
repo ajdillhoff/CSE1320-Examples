@@ -27,24 +27,33 @@ void insert_node(Node **head, Node *new_node, int position) {
     }
 }
 
-void remove_node(Node **head, void *key, int (*equals)(const void *, const void *)) {
+void *remove_node(Node **head, void *key, int (*equals)(const void *, const void *)) {
     Node *prev = NULL;
     Node *current = *head;
+    void *data = NULL;
 
     while (current != NULL && equals(key, current->data)) {
         prev = current;
         current = current->next;
     }
 
+    if (current == NULL) {
+        return NULL;
+    }
+
     if (current == *head) {
         // Removing head node
         Node *temp = current;
         *head = current->next;
+        data = temp->data;
         free(temp);
     } else {
         // Removing some other node
         Node *temp = current;
         prev->next = current->next;
+        data = temp->data;
         free(temp);
     }
+
+    return data;
 }

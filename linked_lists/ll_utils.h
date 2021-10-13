@@ -11,6 +11,6 @@ struct node {
 
 Node *create_node(void *);
 void insert_node(Node **, Node *, int);
-void remove_node(Node **, void *, int (*)(const void *, const void *));
+void *remove_node(Node **, void *, int (*)(const void *, const void *));
 
 #endif // LL_UTILS_H_
