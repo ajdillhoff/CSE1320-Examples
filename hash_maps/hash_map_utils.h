@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 
+#define LOAD_FACTOR 0.75
 #define R_VALUE 1
 
 typedef struct {
@@ -15,6 +16,7 @@ typedef struct {
 typedef struct {
     hash_element_t **temp;
     hash_element_t **primary;
+    int num_keys;
     int temp_size;
     int map_size;
     int temp_index;
@@ -22,6 +24,7 @@ typedef struct {
 
 int hash_function(char *);
 int compute_index(char *, int);
+void init_map(hash_map_t *, int);
 hash_element_t *search(hash_map_t *, char *);
 void rehash_inc(hash_map_t *);
 void insert(hash_map_t *, hash_element_t *);
