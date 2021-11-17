@@ -3,6 +3,13 @@
 
 #define BUFFER_SIZE 1024
 
+void trim(char *str) {
+    int l = strlen(str);
+    if (str[l] == '\n') {
+        str[l] = 0;
+    }
+}
+
 int parse_line(char *buffer) {
     int result = 0;
     char *token = strtok(buffer, ",");
@@ -20,15 +27,13 @@ int parse_line(char *buffer) {
 
 int main() {
     char buffer[BUFFER_SIZE] = { 0 };
-    char cpy[BUFFER_SIZE] = { 0 };
     FILE *fp = fopen("prices.csv", "r");
 
-    while (!feof(fp)) {
-        fgets(buffer, BUFFER_SIZE, fp);
-        if (buffer[strlen(buffer) - 1] == '\n') {
-            buffer[strlen(buffer) - 1] = 0;
-        }
-        parse_line(buffer);
+    while (fgets(buffer, BUFFER_SIZE, fp)) {
+        trim(buffer);
+        int num_tokens = parse_line(buffer);
+
+        printf("%d tokens read.\n", num_tokens);
     }
 
     return 0;
