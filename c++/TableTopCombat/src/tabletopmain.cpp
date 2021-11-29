@@ -32,14 +32,13 @@ vector<Monster> loadMonsters(string filename) {
 
 int main(int argc, char *argv[]) {
     Player p = Player("Vax'ildan");
-    p.hp_ = 127;
-    p.ac_ = 21;
-    p.str_ = 14;
-    p.dex_ = 20;
-    p.con_ = 11;
-    p.wis_ = 14;
-    p.con_ = 11;
-    p.cha_ = 14;
+    p.hp() = 127;
+    p.ac() = 21;
+    p.strength() = 14;
+    p.dexterity() = 20;
+    p.constitution() = 11;
+    p.wisdom() = 14;
+    p.charisma() = 14;
     p.weapon() = Weapon("Whisper", 3, Damage(Dice::d4, 1, 8));
 
     vector<Monster> monsters = loadMonsters("monsters.csv");
