@@ -41,7 +41,7 @@ int main(int argc, char *argv[]) {
     p.charisma() = 14;
     p.weapon() = Weapon("Whisper", 3, Damage(Dice::d4, 1, 8));
 
-    vector<Monster> monsters = loadMonsters("monsters.csv");
+    vector<Monster> monsters = loadMonsters(argv[1]);
 
     Monster m = monsters[0];
 

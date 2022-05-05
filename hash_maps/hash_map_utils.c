@@ -107,8 +107,6 @@ void rehash_inc(hash_map_t *map) {
  * Assumes that the element does not currently exist.
  */
 void insert(hash_map_t *map, hash_element_t *elem) {
-    int index = compute_index(elem->key, map->map_size);
-
     double factor = compute_load_factor(map->num_keys + 1, map->map_size);
 
     printf("[DEBUG] factor = %.2lf\n", factor);
@@ -121,6 +119,8 @@ void insert(hash_map_t *map, hash_element_t *elem) {
         map->primary = calloc(map->map_size * 2, sizeof(void *));
         map->map_size *= 2;
     }
+
+    int index = compute_index(elem->key, map->map_size);
 
     if (map->primary[index]) {
         printf("Collision detected!\n");
@@ -136,4 +136,24 @@ void insert(hash_map_t *map, hash_element_t *elem) {
     map->num_keys++;
 
     rehash_inc(map);
+}
+
+/*
+ * Assumes that the element does not currently exist.
+ */
+void insert_no_rehash(hash_map_t *map, hash_element_t *elem) {
+    int index = compute_index(elem->key, map->map_size);
+
+    if (map->primary[index]) {
+        printf("Collision detected!\n");
+
+        while (map->primary[index] != NULL) {
+            index = (index + 1) % map->map_size;
+        }
+    }
+
+    printf("Inserting %s at %d\n", elem->key, index);
+
+    map->primary[index] = elem;
+    map->num_keys++;
 }
