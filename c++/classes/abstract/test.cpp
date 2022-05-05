@@ -1,12 +1,17 @@
 #include "Car.hpp"
+#include "Motorcycle.hpp"
+#include <vector>
 
 using namespace std;
 
 int main() {
 
     Car car("Ferrari", "F50", 1995);
+    Motorcycle bike("Yamaha", "YZFR1", 2022);
 
     car.Accelerate();
+    bike.Accelerate();
 
-    cout << "We are travelling " << car.speed() << " km/h" << endl;
+    cout << "The car is travelling " << car.speed() << " km/h" << endl;
+    cout << "The bike is travelling " << bike.speed() << " km/h" << endl;
 }
