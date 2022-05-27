@@ -5,8 +5,8 @@
 
 void trim(char *str) {
     int l = strlen(str);
-    if (str[l] == '\n') {
-        str[l] = 0;
+    if (str[l-1] == '\n') {
+        str[l-1] = 0;
     }
 }
 
