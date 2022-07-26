@@ -22,7 +22,7 @@ int main(int argc, char **argv) {
         return 1;
     }
 
-    while (!feof(src_fp)) {
+    while (1) {
         char ln_buff[BUFFER_SIZE] = { 0 };
         char *read_result = fgets(buffer, BUFFER_SIZE, src_fp);
 

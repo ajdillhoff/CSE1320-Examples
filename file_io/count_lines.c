@@ -7,8 +7,7 @@ int main() {
     char str[BUFFER_SIZE] = { 0 };
     FILE *fp = fopen("data.txt", "r");
 
-    while (!feof(fp)) {
-        fgets(str, BUFFER_SIZE, fp);
+    while (fgets(str, BUFFER_SIZE, fp)) {
         num_lines++;
     }
 
