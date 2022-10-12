@@ -18,12 +18,14 @@ void test_bfs() {
 void test_dfs() {
     printf("** test_dfs() **\n");
     // Create binary tree
-    BTNode *root = add_btnode(1);
+    BTNode *root = add_btnode(15);
 
-    root->left = add_btnode(2);
-    root->left->left = add_btnode(4);
-    root->left->right = add_btnode(5);
-    root->right = add_btnode(3);
+    root->left = add_btnode(10);
+    root->left->left = add_btnode(5);
+    root->left->right = add_btnode(12);
+    root->right = add_btnode(25);
+    root->right->left = add_btnode(20);
+    root->right->right = add_btnode(30);
 
     printf("PREORDER\n");
     dfs(root, PREORDER);
