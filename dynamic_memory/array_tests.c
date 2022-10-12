@@ -1,6 +1,6 @@
 #include <stdio.h>
-#include <string.h>
 #include <stdlib.h>
+#include <string.h>
 
 #include "array_utils.h"
 
@@ -20,14 +20,14 @@ int main() {
     array_s arr = { 0 };
     user_s *user1 = calloc(1, sizeof(user_s));
     user1->id = 100;
-    strcpy(user1->name, "James");
+    strcpy(user1->name, "Carl");
 
     user_s *user2 = calloc(1, sizeof(user_s));
     user2->id = 200;
-    strcpy(user2->name, "Carl");
+    strcpy(user2->name, "Sally");
 
-    add(user1, &arr);
-    add(user2, &arr);
+    push(user1, &arr);
+    push(user2, &arr);
 
     print_data(arr);
 
