@@ -5,7 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 
-#define LOAD_FACTOR 0.75
+#define LOAD_FACTOR 0.7
 #define R_VALUE 1
 
 typedef struct {

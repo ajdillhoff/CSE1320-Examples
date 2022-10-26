@@ -79,6 +79,7 @@ void rehash_inc(hash_map_t *map) {
         if (map->temp_index == map->temp_size) {
             free(map->temp);
             map->temp = NULL;
+            map->temp_index = 0;
 
             return;
         }

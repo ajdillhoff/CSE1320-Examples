@@ -10,6 +10,8 @@ typedef union {
 int main() {
     vec3f_t v = { 1.0, 2.0, 3.0 };
 
+    printf("sizeof(v) = %ld\n", sizeof(v));
+
     v.y = 2.5;
 
     printf("(");

@@ -8,6 +8,7 @@ int main() {
 
     printf("ABS(-10) = %d\n", ABS(-10));
     printf("ABS(5 - 10) = %d\n", ABS(5 - 10));
+    printf("ABS_safe(5 - 10) = %d\n", ABS_safe(5 - 10));
     int a = 0;
     printf("ABS(a--) = %d\n", ABS(a--));
     a = 0;
