@@ -18,7 +18,6 @@ void traverse(Node *head) {
     }
 }
 
-// TODO: Debug this, not sorting past the middle two
 void selection_sort(Node **head, int size) {
     Node *start_prev = NULL;
 
@@ -28,6 +27,7 @@ void selection_sort(Node **head, int size) {
         Node *compare_prev_min = start;
         Node *compare_prev = start;
 
+        // Find the smallest node
         for (Node *compare = start->next; compare != NULL; compare = compare->next) {
             if (compare->data < min_compare->data) {
                 min_compare = compare;
@@ -40,15 +40,18 @@ void selection_sort(Node **head, int size) {
         // Check if a swap should be made
         if (min_compare != start) {
             // DEBUG
+            Node *temp = min_compare->next;
             printf("Swapping %d and %d\n", start->data, min_compare->data);
             if (start == *head) {
-                Node *temp = min_compare->next;
                 min_compare->next = start->next;
                 start->next = temp;
                 compare_prev_min->next = start;
                 *head = min_compare;
+            } else if (start->next == min_compare) {
+                start->next = temp;
+                start_prev->next = min_compare;
+                min_compare->next = start;
             } else {
-                Node *temp = min_compare->next;
                 min_compare->next = start->next;
                 start->next = temp;
                 start_prev->next = min_compare;
