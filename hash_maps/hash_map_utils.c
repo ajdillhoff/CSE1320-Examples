@@ -40,20 +40,19 @@ hash_element_t *search(hash_map_t *map, char *key) {
     if (map->temp != NULL) {
         int index = compute_index(key, map->temp_size);
         hash_element_t *elem = map->temp[index];
-        if (!elem) {
-            return NULL;
+        if (elem && !strcmp(elem->key, key)) {
+            return elem;
         }
-        if (!strcmp(map->temp[index]->key, key)) {
-            return map->temp[index];
-        }
-    } else if (map->primary != NULL) {
+    }
+
+    if (map->primary != NULL) {
         int index = compute_index(key, map->map_size);
         hash_element_t *elem = map->primary[index];
         if (!elem) {
             return NULL;
         }
-        if (!strcmp(map->primary[index]->key, key)) {
-            return map->primary[index];
+        if (!strcmp(elem->key, key)) {
+            return elem;
         }
     }
 

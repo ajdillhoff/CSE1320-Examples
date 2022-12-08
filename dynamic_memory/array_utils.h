@@ -6,7 +6,7 @@ typedef struct {
     int capacity;
 } array_s;
 
-int add(void *data, array_s *arr, int pos);
-int push(void *data, array_s *arr);
+int add(void *, array_s *, int);
+int push(void *, array_s *);
 void *pop_p(array_s *, int);
 void *pop(array_s *);
