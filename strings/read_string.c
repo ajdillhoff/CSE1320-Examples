@@ -15,19 +15,24 @@
 ssize_t getline2(char **restrict lineptr, size_t *restrict n, FILE *restrict stream) {
     ssize_t num_read = 0;
 
+    // Set a default size for the buffer if none is given.
     if (*n == 0) {
         *n = BUFSIZE;
     }
 
+    // Allocate memory for the buffer if none is given.
     if (*lineptr == NULL) {
         *lineptr = calloc(*n, sizeof(char));
     }
 
+    // Read from the stream until we reach the end of the file or a newline.
     while (fgets(*lineptr + num_read, BUFSIZE, stream)) {
         num_read = strlen(*lineptr);
 
+        // If we read less than the buffer size, we must have reached the end of the file.
         if (num_read + 1 < *n) break;
 
+        // Otherwise, we need to increase the size of the buffer.
         *n += BUFSIZE;
         *lineptr = realloc(*lineptr, *n);
     }
@@ -49,6 +54,8 @@ char *read_string(FILE *restrict stream) {
         return NULL;
     }
 
+    // `getline2` will allocate memory in chunks of `BUFSIZE`.
+    // If the string is shorter than the capacity, we can free the extra memory.
     if (num_read + 1 < size) {
         line = realloc(line, num_read + 1);
     }
