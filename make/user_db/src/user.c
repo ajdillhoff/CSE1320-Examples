@@ -26,7 +26,7 @@ void free_user(void *data) {
 /*
  * Load users from a CSV file.
  */
-user_s *load_users(char *filename) {
+array_t *load_users(const char *filename) {
     FILE *fp = fopen(filename, "r");
     if (fp == NULL) {
         return NULL;
@@ -41,6 +41,8 @@ user_s *load_users(char *filename) {
         user_s *user = parse_from_csv(line);
         array_add(users, user);
     }
+
+    return users;
 }
 
 /*

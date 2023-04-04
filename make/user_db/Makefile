@@ -103,7 +103,7 @@ RELEASE := $(BUILD_DIR)/bin/user_db
 
 # Rule to build the executable, dependent on the object files.
 $(RELEASE) : $(OBJS)
-	mkdir $(BUILD_DIR)/bin
+	mkdir -p $(BUILD_DIR)/bin
 	$(CC) $(CFLAGS) $? -o $@
 
 # Rules to build the object files, dependent on the source files.
