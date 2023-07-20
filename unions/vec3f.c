@@ -4,8 +4,13 @@ typedef union {
     struct {
         float x, y, z;
     };
-    float data[3];
+    int data[3];
 } vec3f_t;
+
+struct vec3f_s {
+    float x, y, z;
+    float data[3];
+};
 
 int main() {
     vec3f_t v = { 1.0, 2.0, 3.0 };
@@ -16,9 +21,11 @@ int main() {
 
     printf("(");
     for (int i = 0; i < 2; i++) {
-        printf("%.2f, ", v.data[i]);
+        printf("%d, ", v.data[i]);
     }
-    printf("%.2f)\n", v.data[2]);
+    printf("%d)\n", v.data[2]);
+
+    printf("(%.2f, %.2f, %.2f)\n", v.x, v.y, v.z);
 
     return 0;
 }

@@ -4,7 +4,8 @@ int pow2(int a) {
     return a * a;
 }
 
-void use_function(int (*fn)(int a), int x) {
+void use_function(int (*fn)(int), int x) {
+    printf("Address of fn = %p\n", fn);
     printf("fn(%d) = %d\n", x, fn(x));
 }
 

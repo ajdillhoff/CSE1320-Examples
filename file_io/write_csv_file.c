@@ -4,22 +4,26 @@
 #define ITEM_PROPS 4
 #define BUFFER_SIZE 1024
 
+void trim(char *str) {
+    str[strcspn(str, "\r\n")] = 0;
+}
+
 void add_item(char raw_input[][BUFFER_SIZE]) {
     printf("Enter item number: ");
     fgets(raw_input[0], BUFFER_SIZE, stdin);
-    raw_input[0][strlen(raw_input[0]) - 1] = 0;
+    trim(raw_input[0]);
 
     printf("Enter item name: ");
     fgets(raw_input[1], BUFFER_SIZE, stdin);
-    raw_input[1][strlen(raw_input[1]) - 1] = 0;
+    trim(raw_input[1]);
 
     printf("Enter price: ");
     fgets(raw_input[2], BUFFER_SIZE, stdin);
-    raw_input[2][strlen(raw_input[2]) - 1] = 0;
+    trim(raw_input[2]);
 
     printf("Enter quantity: ");
     fgets(raw_input[3], BUFFER_SIZE, stdin);
-    raw_input[3][strlen(raw_input[3]) - 1] = 0;
+    trim(raw_input[3]);
 }
 
 int write_data(FILE *fp, char raw_input[][BUFFER_SIZE]) {

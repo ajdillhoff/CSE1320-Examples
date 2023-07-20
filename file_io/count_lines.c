@@ -11,7 +11,7 @@ int main() {
         num_lines++;
     }
 
-    printf("%d lines in file.\n", num_lines - 1);
+    printf("%d lines in file.\n", num_lines);
 
     return 0;
 }

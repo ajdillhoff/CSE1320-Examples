@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #define MAX_NAME 64
 
@@ -9,11 +10,25 @@ typedef struct {
     int ac;
 } creature;
 
-int compare(const void *elem1, const void *elem2) {
+int compare_name(const void *elem1, const void *elem2) {
+    creature *a = (creature *) elem1;
+    creature *b = (creature *) elem2;
+
+    return strcmp(a->name, b->name);
+}
+
+int compare_hp(const void *elem1, const void *elem2) {
     creature *a = (creature *) elem1;
     creature *b = (creature *) elem2;
 
     return a->hp - b->hp;
+}
+
+int compare_ac(const void *elem1, const void *elem2) {
+    creature *a = (creature *) elem1;
+    creature *b = (creature *) elem2;
+
+    return a->ac - b->ac;
 }
 
 void print_creatures(creature c[], int numel) {
@@ -35,7 +50,7 @@ int main() {
     printf("Before qsort\n");
     print_creatures(creatures, 5);
 
-    qsort(creatures, 5, sizeof(creature), compare);
+    qsort(creatures, 5, sizeof(creature), compare_hp);
 
     printf("After qsort\n");
     print_creatures(creatures, 5);

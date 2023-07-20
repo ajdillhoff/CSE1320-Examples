@@ -54,6 +54,12 @@ int main() {
 
     print_stack(stack);
 
+    for (int i = 0; i < stack->num_items; i++) {
+        free(stack->data[i]);
+    }
+    free(stack->data);
+    free(stack);
+
     return 0;
 }
 

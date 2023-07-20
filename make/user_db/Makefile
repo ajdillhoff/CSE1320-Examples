@@ -8,7 +8,7 @@
 
 # # Rule to build the executable, dependent on the object files.
 # user_db : main.o user.o array_utils.o utils.o
-# 	$(CC) $(CFLAGS) $? -o $@
+# 	$(CC) $(CFLAGS) $^ -o $@
 
 # # Rules to build the object files, dependent on the source files.
 # main.o : main.c
@@ -35,11 +35,11 @@
 # # Rule to build the executable, dependent on the object files.
 # build/bin/user_db : main.o user.o array_utils.o utils.o
 # 	mkdir build/bin
-# 	$(CC) $(CFLAGS) $? -o $@
+# 	$(CC) $(CFLAGS) $^ -o $@
 
 # # Rules to build the object files, dependent on the source files.
 # build/main.o : main.c
-# 	mkdir build
+# 	mkdir -p build
 # 	$(CC) $(CFLAGS) -c $? -o $@
 
 # build/user.o : user.c
@@ -62,7 +62,7 @@
 # # Rule to build the executable, dependent on the object files.
 # build/bin/user_db : main.o user.o array_utils.o utils.o
 # 	mkdir build/bin
-# 	$(CC) $(CFLAGS) $? -o $@
+# 	$(CC) $(CFLAGS) $^ -o $@
 
 # # Rules to build the object files, dependent on the source files.
 # build/main.o : main.c
@@ -104,7 +104,7 @@ RELEASE := $(BUILD_DIR)/bin/user_db
 # Rule to build the executable, dependent on the object files.
 $(RELEASE) : $(OBJS)
 	mkdir -p $(BUILD_DIR)/bin
-	$(CC) $(CFLAGS) $? -o $@
+	$(CC) $(CFLAGS) $^ -o $@
 
 # Rules to build the object files, dependent on the source files.
 $(BUILD_DIR)/%.c.o : %.c

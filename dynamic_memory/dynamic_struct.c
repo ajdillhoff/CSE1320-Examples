@@ -35,17 +35,29 @@ char *read_string(FILE *restrict stream) {
     return line;
 }
 
+char *custom_read() {
+    char buffer[1024] = { 0 };
+
+    fgets(buffer, 1024, stdin);
+    trim(buffer);
+    char *str = calloc(strlen(buffer) + 1, sizeof(char));
+    strcpy(str, buffer);
+
+    return str;
+}
+
 /*
 * Creates a new user based on input from the user.
 */
 user_s *create_user() {
     user_s *user = malloc(sizeof(user_s));
+    char buffer[1024] = { 0 };
 
     printf("Enter a name: ");
-    user->name = read_string(stdin);
+    user->name = custom_read();
 
     printf("Enter an email address: ");
-    user->email = read_string(stdin);
+    // user->email = read_string(stdin);
 
     return user;
 }

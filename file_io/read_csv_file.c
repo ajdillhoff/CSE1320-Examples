@@ -16,7 +16,7 @@ int parse_line(char *buffer) {
 
     while (token != NULL) {
         result++;
-        printf("%-25s ", token);
+        printf("%-15s ", token);
         token = strtok(NULL, ",");
     }
 

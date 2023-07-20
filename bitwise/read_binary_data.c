@@ -1,5 +1,6 @@
 #include <stdio.h>
 
+
 void print_binary_char(unsigned char a) {
     for (int i = 7; i >= 0; i--) {
         printf("%d", (a >> i) & 1);

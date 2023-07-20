@@ -12,7 +12,7 @@ int skip_whitespace(FILE *fp) {
     // Put the non-whitespace character back
     ungetc(c, fp);
 
-    return count;
+    return count - 1;
 }
 
 int main() {
@@ -24,8 +24,12 @@ int main() {
     int num_spaces = skip_whitespace(fp);
     printf("%d spaces skipped.\n", num_spaces);
 
-    while (!feof(fp)) {
+    while (1) {
         int c = getc(fp);
+
+        if (feof(fp)) {
+            break;
+        }
         printf("%c", c);
     }
 

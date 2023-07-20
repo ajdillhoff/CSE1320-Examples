@@ -6,19 +6,19 @@ int main() {
     char b = 'a';
     int *p;
 
-    printf("Address of p = %p\n", p);
+    printf("Value of p = %p\n", p);
     printf("Address of a = %p\n", &a);
 
     // Assign the address of a to p
     p = &a;
 
-    printf("Address of p = %p\n", p);
+    printf("Value of p = %p\n", p);
     printf("Address of a = %p\n", &a);
 
     // Assign the address of b to p
     p = &b;
 
-    printf("Address of p = %p\n", p);
+    printf("Value of p = %p\n", p);
     printf("Address of b = %p\n", &b);
 
     return 0;

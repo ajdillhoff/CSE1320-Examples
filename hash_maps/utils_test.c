@@ -97,6 +97,7 @@ int main(int argc, char **argv) {
             elem = calloc(1, sizeof(hash_element_t));
         } else {
             printf("Key %s already exists.\n", buffer);
+            continue;
         }
 
         elem->key = calloc(strlen(buffer) + 1, sizeof(char));
