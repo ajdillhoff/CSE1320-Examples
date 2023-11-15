@@ -47,5 +47,7 @@ int main() {
 
     int s = socket(servinfo->ai_family, servinfo->ai_socktype, servinfo->ai_protocol);
 
+    connect(s, servinfo->ai_addr, servinfo->ai_addrlen);
+
     freeaddrinfo(servinfo); // free the linked-list
 }
