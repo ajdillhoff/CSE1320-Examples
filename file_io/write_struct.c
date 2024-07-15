@@ -14,7 +14,6 @@
 
 typedef struct {
     int id;
-    unsigned char name_size;
     char *name;
     double price;
     int quantity;
@@ -46,8 +45,8 @@ product_t *create_product() {
     fgets(buffer, BUF_SIZE, stdin);
     trim(buffer);
 
-    product->name_size = strlen(buffer);
-    product->name = calloc(product->name_size + 1, sizeof(char));
+    int name_size = strlen(buffer);
+    product->name = calloc(name_size + 1, sizeof(char));
     strcpy(product->name, buffer);
 
     printf("Enter a price: ");
@@ -72,8 +71,7 @@ int main() {
 
     // Write the product data
     fwrite(&product->id, sizeof(int), 1, fp);
-    fwrite(&product->name_size, sizeof(unsigned char), 1, fp);
-    fwrite(product->name, sizeof(char), strlen(product->name), fp);
+    fwrite(product->name, sizeof(char), strlen(product->name) + 1, fp);
     fwrite(&product->price, sizeof(double), 1, fp);
     fwrite(&product->quantity, sizeof(int), 1, fp);
 

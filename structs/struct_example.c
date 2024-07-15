@@ -15,11 +15,11 @@ void trim(char *str) {
  * Since the input is a pointer, we use '->' notation to access
  * members instead of '.'.
  */
-void print_monster(monster_t *monster) {
-    printf("Name: %s\n", monster->name);
-    printf("Type: %s\n", monster->type);
-    printf("HP: %d\n", monster->hp);
-    printf("Level: %d\n", monster->level);
+void print_monster(monster_t monster) {
+    printf("Name: %s\n", monster.name);
+    printf("Type: %s\n", monster.type);
+    printf("HP: %d\n", monster.hp);
+    printf("Level: %d\n", monster.level);
 }
 
 monster_t create_monster() {
@@ -47,7 +47,7 @@ int main() {
 
     /* print_monster(dragon); */
 
-    /* printf("%ld\n", sizeof(dragon)); */
+    printf("%ld\n", sizeof(monster_t));
 
     monster_t dragons[5] = {
         { "Thordak", "Adult Red Dragon", 1100, 20 },
@@ -57,8 +57,20 @@ int main() {
         { "Umbrasyl", "Adult Dragon Dragon", 700, 16 },
     };
 
+    FILE *fp = fopen("dragons.bin", "wb");
+
+    fwrite(dragons, sizeof(monster_t), 5, fp);
+
+    fclose(fp);
+
+    fp = fopen("dragons.bin", "rb");
+
+    monster_t new_dragons[5] = { 0 };
+
+    fread(new_dragons, sizeof(monster_t), 5, fp);
+
     for (int i = 0; i < 5; i++) {
-        print_monster(&dragons[i]);
+        print_monster(new_dragons[i]);
     }
 
     return 0;

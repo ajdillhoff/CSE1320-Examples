@@ -4,17 +4,23 @@ Damage::Damage(string dmg) {
     string delim1 = "d";
     string delim2 = "+";
 
+    // dmg = "2d6+4"
+
     // Get number of dice
     string token = dmg.substr(0, dmg.find(delim1));
     numDice_ = stoi(token);
 
     dmg.erase(0, dmg.find(delim1) + delim1.length());
 
+    // dmg = "6+4"
+
     // Get dice type
     token = dmg.substr(0, dmg.find(delim2));
     dice_ = Dice(stoi(token));
 
     dmg.erase(0, dmg.find(delim2) + delim2.length());
+
+    // dmg = "4"
 
     // Get bonus
     bonus_ = stoi(dmg);

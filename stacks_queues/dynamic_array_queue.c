@@ -22,9 +22,11 @@ int dequeue(int **queue, int *size) {
 
     (*size)--;
 
+    int val = (*queue)[*size];
+
     *queue = realloc(*queue, *size * sizeof(int));
 
-    return (*queue)[*size];
+    return val;
 }
 
 void print_queue(int *queue, int size) {

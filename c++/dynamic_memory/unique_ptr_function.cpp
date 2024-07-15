@@ -8,7 +8,7 @@ struct Car {
     int horsepower;
 };
 
-bool has_equal_wheels(unique_ptr<Car> b, unique_ptr<Car> c) {
+bool has_equal_wheels(unique_ptr<Car>& b, unique_ptr<Car>& c) {
     if (b->num_wheels == c->num_wheels) {
         return true;
     } else {
@@ -20,8 +20,8 @@ int main() {
     unique_ptr<Car> b {new Car};
     unique_ptr<Car> c {new Car};
 
-    b->num_wheels = 2;
+    b->num_wheels = 4;
     c->num_wheels = 4;
 
-    cout << has_equal_wheels << endl;
+    cout << has_equal_wheels(b, c) << endl;
 }

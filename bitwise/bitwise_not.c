@@ -3,6 +3,14 @@
  */
 #include <stdio.h>
 
+// input of 10
+// 00001010
+//     ^
+// 00000001
+// 00000001 &
+// --------
+// 00000001
+
 void print_binary_char(char a) {
     for (int i = 7; i >= 0; i--) {
         printf("%d", (a >> i) & 1);

@@ -4,7 +4,7 @@ typedef union {
     struct {
         float x, y, z;
     };
-    int data[3];
+    float data[3];
 } vec3f_t;
 
 struct vec3f_s {

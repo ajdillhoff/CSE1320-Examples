@@ -77,7 +77,7 @@ int main(int argc, char **argv) {
         return 1;
     }
 
-    a = atof(argv[2]);
+    a = atof(argv[2]); // ['1', '0', '\0'] -> 10.0
     b = atof(argv[3]);
 
     /* double (*op)(double, double) = choose_op(argv[1]); */

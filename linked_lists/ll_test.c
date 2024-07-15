@@ -2,19 +2,16 @@
 
 #include "ll_utils.h"
 
-void traverse_nodes(Node *n) {
-    if (n != NULL) {
-        int a = *((int *)n->data);
-        printf("data = %d\n", a);
-        traverse_nodes(n->next);
-    }
+void print_function(void *data) {
+    int *a = (int *)data;
+    printf("data = %d\n", *a);
 }
 
 int equals(const void *elem1, const void *elem2) {
     int *a = (int *)elem1;
     int *b = (int *)elem2;
 
-    return *a != *b;
+    return *a == *b;
 }
 
 int main() {
@@ -27,12 +24,12 @@ int main() {
     insert_node(&head, node2, 1);
     insert_node(&head, node3, 0);
 
-    traverse_nodes(head);
+    traverse(head, print_function);
 
     printf("Removing node with key = %d\n", a);
     remove_node(&head, &a, equals);
 
-    traverse_nodes(head);
+    traverse(head, print_function);
 
     return 0;
 }

@@ -3,7 +3,7 @@
 
 int main() {
     int *arr_ptr[] = {
-        0, 1, 2, 3
+        (int *)0, (int *)1, (int *)2, (int *)3
     };
 
     int **ptr_ptr = arr_ptr;

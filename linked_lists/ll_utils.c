@@ -1,5 +1,12 @@
 #include "ll_utils.h"
 
+void traverse(Node *n, void (*callback)(void *)) {
+    if (n != NULL) {
+        callback(n->data);
+        traverse(n->next, callback);
+    }
+}
+
 Node *create_node(void *data) {
     Node *n = calloc(1, sizeof(Node));
     n->data = data;
@@ -32,7 +39,7 @@ void *remove_node(Node **head, void *key, int (*equals)(const void *, const void
     Node *current = *head;
     void *data = NULL;
 
-    while (current != NULL && equals(key, current->data)) {
+    while (current != NULL && !equals(key, current->data)) {
         prev = current;
         current = current->next;
     }
@@ -49,11 +56,26 @@ void *remove_node(Node **head, void *key, int (*equals)(const void *, const void
         free(temp);
     } else {
         // Removing some other node
-        Node *temp = current;
         prev->next = current->next;
-        data = temp->data;
-        free(temp);
+        data = current->data;
+        free(current);
     }
 
     return data;
+}
+
+void free_list(Node *n) {
+    while (n != NULL) {
+        Node *temp = n->next;
+        free(n);
+        n = temp;
+    }
+}
+
+void free_list_recursive(Node *n) {
+    if (n != NULL) {
+        Node *temp = n->next;
+        free(n);
+        free_list_recursive(temp);
+    }
 }

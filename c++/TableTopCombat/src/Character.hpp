@@ -97,5 +97,5 @@ class Character {
             }
         }
 
-        void attack(Character c);
+        void attack(Character& c);
 };

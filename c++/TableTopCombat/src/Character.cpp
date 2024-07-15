@@ -14,7 +14,7 @@ Character::Character(string name) {
     int_ = 10;
 }
 
-void Character::attack(Character c) {
+void Character::attack(Character& c) {
     // Roll for an attack
     int hit = rollDice(Dice::d20);
     hit += weapon_.hitBonus();

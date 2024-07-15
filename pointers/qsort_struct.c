@@ -50,7 +50,7 @@ int main() {
     printf("Before qsort\n");
     print_creatures(creatures, 5);
 
-    qsort(creatures, 5, sizeof(creature), compare_hp);
+    qsort(creatures, 5, sizeof(creature), compare_name);
 
     printf("After qsort\n");
     print_creatures(creatures, 5);

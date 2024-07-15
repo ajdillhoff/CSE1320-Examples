@@ -48,6 +48,8 @@ int main(int argc, char *argv[]) {
     cout << p;
     cout << m;
 
-    p.attack(m);
-    m.attack(p);
+    while (p.hp() > 0 && m.hp() > 0) {
+        p.attack(m);
+        m.attack(p);
+    }
 }

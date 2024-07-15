@@ -10,6 +10,7 @@ struct Car {
 
 // The shared_ptr is copied here, thus there will be 2 references
 void print_wheels(shared_ptr<Car> c) {
+    cout << "Num references: " << c.use_count() << endl;
     cout << "Wheels: " << c->num_wheels << endl;
 }
 
@@ -21,4 +22,5 @@ int main() {
     c->num_wheels = 4;
 
     print_wheels(c);
+    cout << "Num references: " << c.use_count() << endl;
 }

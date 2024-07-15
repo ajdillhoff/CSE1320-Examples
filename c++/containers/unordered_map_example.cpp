@@ -14,13 +14,23 @@ int main() {
         {"BDX", 245.90}
     };
 
+    // Print all keys
+    for (const auto & stock : stocks) {
+        cout << stock.first << endl;
+    }
+
     // Using the [] will return 0 if no key is found.
     auto result = stocks["AAPL"];
     cout << result << endl;
 
+    // Print all keys
+    for (const auto & stock : stocks) {
+        cout << stock.first << " " << stock.second << endl;
+    }
+
     // Using .at will throw an exception, which should be caught
     try {
-        result = stocks.at("AAPL");
+        result = stocks.at("GME");
     } catch (out_of_range& e) {
         cout << "Key does not exist!" << endl;
     }

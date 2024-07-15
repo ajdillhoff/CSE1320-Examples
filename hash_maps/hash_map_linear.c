@@ -2,7 +2,7 @@
 #include <string.h>
 #include <stdlib.h>
 
-#define LF_BOUND 0.1
+#define LF_BOUND 0.7
 #define BUF_SIZE 128
 
 typedef struct {

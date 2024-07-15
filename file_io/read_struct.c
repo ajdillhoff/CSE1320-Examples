@@ -11,7 +11,6 @@
 
 typedef struct {
     int id;
-    unsigned char name_size;
     char *name;
     double price;
     int quantity;
@@ -28,10 +27,31 @@ product_t *read_product(FILE *fp) {
     }
 
     fread(&product->id, sizeof(int), 1, fp);
-    fread(&product->name_size, sizeof(unsigned char), 1, fp);
-    product->name = calloc(product->name_size + 1, sizeof(char));
-    fread(product->name, sizeof(char), product->name_size, fp);
+
+    // Get the number of characters in the string
+    long cur_pos = ftell(fp);
+    char c = -1;
+    int size = 0;
+    while ((c = getc(fp))) {
+        size++;
+    }
+
+    printf("[DEBUG] size is %d\n", size);
+
+    product->name = calloc(size, sizeof(char));
+
+    fseek(fp, cur_pos, SEEK_SET);
+
+    printf("[DEBUG] file pointer at %ld\n", ftell(fp));
+
+    fread(product->name, sizeof(char), size + 1, fp);
+
+    printf("[DEBUG] file pointer at %ld\n", ftell(fp));
+
     fread(&product->price, sizeof(double), 1, fp);
+
+    printf("[DEBUG] price is %lf\n", product->price);
+
     fread(&product->quantity, sizeof(int), 1, fp);
 
     return product;

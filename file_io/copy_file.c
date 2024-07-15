@@ -5,7 +5,18 @@ int main(int argc, char *argv[]) {
         printf("argv[%d] = %s\n", i, argv[i]);
     }
 
-    FILE *src = fopen(argv[1], "r");
+    if (argc != 3) {
+        printf("USAGE: ./a.out file1 file2\n");
+        return 1;
+    }
+
+    FILE *src = fopen(argv[1], "rb");
+
+    if (src == NULL) {
+        printf("Couldn't open file %s.\n", argv[1]);
+        return 1;
+    }
+
     FILE *dest = fopen(argv[2], "w");
 
     char c = 0;
