@@ -6,7 +6,7 @@
 
 typedef struct BTNode BTNode;
 struct BTNode {
-    void *data;
+    int data;
     BTNode *left;
     BTNode *right;
 };
@@ -30,6 +30,6 @@ void bfs(BTNode *);
 void dfs(BTNode *, traverse_type);
 void insert(BTNode **, int);
 BTNode *search(BTNode *, int);
-void release_tree(BTNode *, void (*release)(void *));
+void release_tree(BTNode *);
 
 #endif  // BT_UTILS_H

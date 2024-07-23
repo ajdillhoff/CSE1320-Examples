@@ -34,7 +34,7 @@
 
 # # Rule to build the executable, dependent on the object files.
 # build/bin/user_db : main.o user.o array_utils.o utils.o
-# 	mkdir build/bin
+# 	mkdir -p build/bin
 # 	$(CC) $(CFLAGS) $^ -o $@
 
 # # Rules to build the object files, dependent on the source files.
@@ -61,7 +61,7 @@
 
 # # Rule to build the executable, dependent on the object files.
 # build/bin/user_db : main.o user.o array_utils.o utils.o
-# 	mkdir build/bin
+# 	mkdir -p build/bin
 # 	$(CC) $(CFLAGS) $^ -o $@
 
 # # Rules to build the object files, dependent on the source files.
@@ -97,14 +97,21 @@ SRC_DIR = src
 BUILD_DIR = build
 
 SRCS := $(wildcard $(SRC_DIR)/*.c)
+# src/main.c
 OBJS := $(SRCS:%=$(BUILD_DIR)/%.o)
+# build/src/main.c.o
 
 RELEASE := $(BUILD_DIR)/bin/user_db
+DEBUG := $(BUILD_DIR)/bin/user_db_debug
 
 # Rule to build the executable, dependent on the object files.
 $(RELEASE) : $(OBJS)
 	mkdir -p $(BUILD_DIR)/bin
 	$(CC) $(CFLAGS) $^ -o $@
+
+$(DEBUG) : $(OBJS)
+	mkdir -p $(BUILD_DIR)/bin
+	$(CC) $(CFLAGS) -g -DDEBUG $^ -o $@
 
 # Rules to build the object files, dependent on the source files.
 $(BUILD_DIR)/%.c.o : %.c

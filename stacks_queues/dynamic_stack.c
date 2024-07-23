@@ -40,6 +40,18 @@ char *read_string() {
     return str;
 }
 
+void free_stack(mystack_t *stack) {
+    if (stack == NULL) {
+        return;
+    }
+
+    for (int i = 0; i < stack->num_items; i++) {
+        free(stack->data[i]);
+    }
+    free(stack->data);
+    free(stack);
+}
+
 int main() {
     mystack_t *stack = calloc(1, sizeof(mystack_t));
 
@@ -54,11 +66,7 @@ int main() {
 
     print_stack(stack);
 
-    for (int i = 0; i < stack->num_items; i++) {
-        free(stack->data[i]);
-    }
-    free(stack->data);
-    free(stack);
+    free_stack(stack);
 
     return 0;
 }

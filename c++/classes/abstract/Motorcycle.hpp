@@ -36,13 +36,23 @@ class Motorcycle : public Automobile {
             cout << "Default constructor called." << endl;
         }
 
-        ~Motorcycle() {}
+        ~Motorcycle() {
+            cout << "Motorcycle Destructor called." << endl;
+        }
 
         /*
          * Setters/Getters
          */
         double speed() const {
             return speed_;
+        }
+
+        void setSpeed(double val) {
+            if (val >= 0)
+                speed_ = val;
+            else {
+                speed_ = 0;
+            }
         }
 
         /*

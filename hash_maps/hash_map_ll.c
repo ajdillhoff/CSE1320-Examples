@@ -29,6 +29,16 @@ int hash_function(char *key) {
     return hash;
 }
 
+// unsigned long djb2(unsigned char *str) {
+//     unsigned long hash = 5381;
+//     int c;
+
+//     while (c = *str++)
+//         hash = ((hash << 5) + hash) + c; /* hash * 33 + c */
+
+//     return hash;
+// }
+
 int compute_index(char *key, int array_size) {
     int hash = hash_function(key);
     int index = hash % array_size;

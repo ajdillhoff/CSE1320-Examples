@@ -9,6 +9,7 @@ struct node {
     Node *next;
 };
 
+void traverse(Node *n, void (*callback)(void *));
 Node *create_node(void *);
 void insert_node(Node **, Node *, int);
 void *remove_node(Node **, void *, int (*)(const void *, const void *));

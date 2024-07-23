@@ -1,9 +1,10 @@
 #include <stdlib.h>
 
 typedef struct {
-    void **data;
+    void *data;
     int numel;
     int capacity;
+    int elem_size;
 } array_s;
 
 int add(void *, array_s *, int);

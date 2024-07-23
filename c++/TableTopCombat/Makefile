@@ -1,4 +1,5 @@
 TARGET_EXEC := TableTopCombat
+CXXFLAGS := -std=c++14
 
 BUILD_DIR := ./build
 SRC_DIR := ./src

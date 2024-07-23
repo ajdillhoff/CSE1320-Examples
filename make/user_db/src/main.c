@@ -16,9 +16,12 @@ int main(int argc, char const *argv[]) {
         return 1;
     }
 
+    printf("test\n");
+
     print_users(users);
 
     array_free(users, free_user);
 
     return 0;
+
 }

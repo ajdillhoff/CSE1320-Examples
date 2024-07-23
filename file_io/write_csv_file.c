@@ -34,12 +34,15 @@ int write_data(FILE *fp, char raw_input[][BUFFER_SIZE]) {
     // Put item on a new line
     putc('\n', fp);
 
-    for (int i = 0; i < ITEM_PROPS - 1; i++) {
-        fputs(raw_input[i], fp);
-        putc(',', fp);
-    }
+    fprintf(fp, "%s,%s,%s,%s", raw_input[0], raw_input[1], raw_input[2],
+            raw_input[3]);
 
-    fputs(raw_input[3], fp);
+    // for (int i = 0; i < ITEM_PROPS - 1; i++) {
+    //     fputs(fp, raw_input[i]);
+    //     putc(',', fp);
+    // }
+
+    // fputs(fp, raw_input[ITEM_PROPS - 1]);
 
     return 0;
 }

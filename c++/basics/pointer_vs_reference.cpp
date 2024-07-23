@@ -16,12 +16,13 @@ void pass_pointer(int *v_ptr) {
  * The syntax for using this function is cleaner than with
  * using a pointer.
  */
-void pass_reference (int& v_ref) {
+void pass_reference(int& v_ref) {
     v_ref++; // Changes the value that `v_ref` refers to.
 }
 
 int main() {
     int v = 10;
+
     int& v_ref {v}; // Reference to int
     v_ref++; // v is now 11
     cout << "v_ref = " << v_ref << endl;

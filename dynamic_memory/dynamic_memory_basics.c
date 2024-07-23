@@ -15,8 +15,14 @@ int *init_array(int size, int val) {
 
 int main() {
 
-    int *arr = init_array(1000, 0);
+    int *arr = init_array(1000, 10);
     int size = 1000;
+
+    for (int i = 0; i < 1000; i++) {
+        printf("arr[%d] = %d\n", i, arr[i]);
+    }
+
+    free(arr);
 
     return 0;
 }

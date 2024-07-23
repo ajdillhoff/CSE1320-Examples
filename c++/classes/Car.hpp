@@ -31,6 +31,26 @@ class Car {
             cout << "Default constructor called." << endl;
         }
 
+        ~Car() {
+            cout << "Destructor called." << endl;
+        }
+
+        /*
+        * Setters and Getters
+        */
+        int getYear() const {
+            return year;
+        }
+
+        void setYear(int val) {
+            if (val < 0) {
+                cout << "Invalid year." << endl;
+                return;
+            }
+
+            year = val;
+        }
+        
         /*
          * Operators
          */

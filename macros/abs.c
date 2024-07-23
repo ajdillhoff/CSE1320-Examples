@@ -11,6 +11,7 @@ int main() {
     printf("ABS_safe(5 - 10) = %d\n", ABS_safe(5 - 10));
     int a = 0;
     printf("ABS(a--) = %d\n", ABS(a--));
+    printf("a = %d\n", a);
     a = 0;
     printf("ABS_safe(a--) = %d\n", ABS_safe(a--));
 

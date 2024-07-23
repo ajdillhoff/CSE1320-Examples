@@ -99,11 +99,10 @@ BTNode *search(BTNode *node, int val) {
     }
 }
 
-void release_tree(BTNode *node, void (*free_data)(void *)) {
+void release_tree(BTNode *node) {
     if (node != NULL) {
-        release_tree(node->left, free_data);
-        release_tree(node->right, free_data);
-        free_data(node->data);
+        release_tree(node->left);
+        release_tree(node->right);
         free(node);
     }
 }

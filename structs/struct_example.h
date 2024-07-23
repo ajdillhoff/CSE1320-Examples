@@ -14,7 +14,7 @@ typedef struct {
 } monster_t;
 
 void trim(char *);
-void print_monster(monster_t *);
+void print_monster(monster_t);
 monster_t create_monster();
 
 #endif
