@@ -11,7 +11,7 @@ int main() {
 
     // Provide a fixed width with left justification
     printf("\nFixed width of 10, padded with spaces, left-justified:\n");
-    printf("%-10d\n", 10);
+    printf("%-10dTest\n", 10);
 
     // Pad the fixed width with 0 instead of space
     printf("\nFixed with of 10, padded with zeros:\n");
@@ -21,8 +21,8 @@ int main() {
     printf("\nForce a '+' if value is positive:\n");
     printf("%+d\n", 10);
 
-    // Truncate a decimal to a fixed number of values
-    printf("\nTruncate a decimal to a fixed number of values:\n");
+    // Rounds a decimal to a fixed number of values
+    printf("\nRounds a decimal to a fixed number of values:\n");
     printf("%.2f\n", 6.2351);
 
     // Truncate a decimal to a dynamic number of values

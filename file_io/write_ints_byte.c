@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 int main() {
-    int arr[] = { 100, 22, 3, 43, 15 };
+    int arr[] = { 10023, 1024, 3, 43, 15 };
 
     FILE *fp = fopen("numbers.dat", "wb");
 

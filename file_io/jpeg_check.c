@@ -12,7 +12,7 @@ int check_jpeg(FILE *fp) {
 
 int main(int argc, char **argv) {
     if (argc != 2) {
-        printf("USAGE: jpeg_check FILENAME.png\n");
+        printf("USAGE: jpeg_check FILENAME.jpg\n");
         return 1;
     }
 
