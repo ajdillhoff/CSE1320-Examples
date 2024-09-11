@@ -16,8 +16,14 @@ int add(void *data, array_s *arr, int pos) {
     //     arr->data[i] = arr->data[i-1];
     // }
 
+    // Shift the data over
+    memcpy(arr->data + ((pos + 1) * arr->elem_size),
+           arr->data + pos * arr->elem_size,
+           arr->numel * arr->elem_size);
+
     // Insert the element
-    memcpy(arr->data + (arr->numel * arr->elem_size), data, arr->elem_size);
+    memcpy(arr->data + (pos * arr->elem_size), data, arr->elem_size);
+
     // arr->data[pos] = data;
     arr->numel++;
     arr->capacity++;
