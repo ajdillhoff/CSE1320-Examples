@@ -4,12 +4,19 @@
 #include "array_utils.h"
 
 int add(void *data, array_s *arr, int pos) {
+    // Basic error checking
     if (pos < 0 || pos > arr->numel || data == NULL || arr == NULL) {
         return 1;
     }
 
-    // Resize our array
-    arr->data = realloc(arr->data, (arr->numel + 1) * arr->elem_size);
+    if (arr->numel == arr->capacity) {
+        printf("[DEBUG] Need to resize\n");
+        // Resize our array
+        arr->data = realloc(arr->data, arr->capacity * 2 * arr->elem_size);
+        arr->capacity *= 2;
+    }
+
+    // arr->data = realloc(arr->data, (arr->numel + 1) * arr->elem_size);
 
     // Shift contents
     // for (int i = arr->numel; i > pos; i--) {
@@ -19,14 +26,13 @@ int add(void *data, array_s *arr, int pos) {
     // Shift the data over
     memcpy(arr->data + ((pos + 1) * arr->elem_size),
            arr->data + pos * arr->elem_size,
-           arr->numel * arr->elem_size);
+           (arr->numel - pos) * arr->elem_size);
 
     // Insert the element
     memcpy(arr->data + (pos * arr->elem_size), data, arr->elem_size);
 
     // arr->data[pos] = data;
     arr->numel++;
-    arr->capacity++;
 
     return 0;
 }

@@ -42,10 +42,13 @@ int main() {
     user2->name = calloc(6, sizeof(char));
     strcpy(user2->name, "Sally");
 
-    push(user1, &arr);
-    free(user1);
-    push(user2, &arr);
-    free(user2);
+    add(user1, &arr, arr.numel);
+    add(user2, &arr, arr.numel);
+
+    // push(user1, &arr);
+    // free(user1);
+    // push(user2, &arr);
+    // free(user2);
 
     print_data(arr);
 
