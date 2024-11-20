@@ -1,6 +1,6 @@
 #include "rb_utils.h"
 
-RBNode *add_btnode(int data) {
+RBNode *add_rbnode(int data) {
     RBNode *node = calloc(1, sizeof(RBNode));
     node->data = data;
 
@@ -116,17 +116,60 @@ void rotate_right(RBNode **root, RBNode *x) {
     x->p = y;
 }
 
-void insert(RBNode **root, int val) {
-    RBNode **temp = root;
-    while (*temp != NULL) {
-        if (val >= (*temp)->data) {
-            temp = &(*temp)->right;
+void insert(RBNode **root, RBNode *z) {
+    RBNode *y = NULL;
+    RBNode *x = *root;
+    while (x != NULL) {
+        y = x;
+        if (z->data >= x->data) {
+            x = x->right;
         } else {
-            temp = &(*temp)->left;
+            x = x->left;
         }
     }
 
-    *temp = add_btnode(val);
+    z->p = y;
+
+    if (y == NULL) {
+        *root = z;
+    } else if (z->data < y->data) {
+        y->left = z;
+    } else {
+        y->right = z;
+    }
+
+    insert_fixup(root, z);
+}
+
+void insert_fixup(RBNode **root, RBNode *z) {
+    RBNode *y = NULL;
+    while (z->p && z->p->color == RED) {
+        if (z->p == z->p->p->left) {
+            // z is on the left side of the tree
+            y = z->p->p->right;
+            // Case 1
+            if (y && y->color == RED) {
+                z->p->color = BLACK;
+                y->color = BLACK;
+                z->p->p->color = RED;
+                z = z->p->p;
+            } else {
+                // Case 2
+                if (z == z->p->right) {
+                    z = z->p;
+                    rotate_left(root, z);
+                }
+                // Case 3
+                z->p->color = BLACK;
+                z->p->p->color = RED;
+                rotate_right(root, z->p->p);
+            }
+        } else {
+            // z is on the right side of the tree
+        }
+    }
+
+    (*root)->color = BLACK;
 }
 
 RBNode *search(RBNode *node, int val) {

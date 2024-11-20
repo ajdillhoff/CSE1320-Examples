@@ -14,7 +14,7 @@ $(RUN_TESTS): $(TEST_OBJS)
 
 $(BUILD_DIR)/%.c.o: %.c
 	mkdir -p $(dir $@)
-	$(CC) $(CPPFLAGS) $(CFLAGS) -I./libs/unity/src -c $< -o $@
+	$(CC) $(CPPFLAGS) $(CFLAGS) -g -I./libs/unity/src -c $< -o $@
 
 clean:
 	rm -rf $(BUILD_DIR)
