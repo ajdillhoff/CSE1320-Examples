@@ -1,43 +1,44 @@
 #ifndef RB_UTILS_H
 #define RB_UTILS_H
 
-#define RED 0
-#define BLACK 1
-
 #include <stdio.h>
 #include <stdlib.h>
+
+#define MAX_HEIGHT 1000
+#define BUFFER_SIZE 32
+
+typedef enum {
+    RED,
+    BLACK
+} color_t;
 
 typedef struct RBNode RBNode;
 struct RBNode {
     int data;
-    unsigned char color;
+    color_t color;
     RBNode *p;
     RBNode *left;
     RBNode *right;
 };
 
-typedef struct Node Node;
-struct Node {
-    void *data;
-    Node *next;
-};
+typedef struct {
+    RBNode *root;
+} RBTree;
 
-typedef enum {
-    PREORDER,
-    INORDER,
-    POSTORDER
-} traverse_type;
+typedef struct {
+    int height;
+    int width;
+    char **buffer;
+} print_buffer;
 
 RBNode *add_rbnode(int);
-void enqueue(Node **, void *);
-Node *dequeue(Node **);
-void bfs(RBNode *);
-void dfs(RBNode *, traverse_type);
-void rotate_left(RBNode **, RBNode *);
-void rotate_right(RBNode **, RBNode *);
-void insert(RBNode **, RBNode *);
-void insert_fixup(RBNode **, RBNode *);
+void print_tree(RBTree *);
+void rotate_left(RBTree*, RBNode *);
+void rotate_right(RBTree *, RBNode *);
+void insert(RBTree *, RBNode *);
+void insert_fixup(RBTree *, RBNode *);
+void delete_node(RBTree *, RBNode *);
 RBNode *search(RBNode *, int);
-void release_tree(RBNode *);
+void free_tree(RBNode *);
 
 #endif  // RB_UTILS_H

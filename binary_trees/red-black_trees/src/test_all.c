@@ -1,13 +1,9 @@
 #include "unity.h"
 #include "rb_utils.h"
 
-void setUp(void) {
-    // set stuff up here
-}
+void setUp(void) {}
 
-void tearDown(void) {
-    // clean stuff up here
-}
+void tearDown(void) {}
 
 void test_rotate_left() {
     RBNode *alpha = calloc(1, sizeof(RBNode));
@@ -15,7 +11,7 @@ void test_rotate_left() {
     RBNode *gamma = calloc(1, sizeof(RBNode));
     RBNode *x = calloc(1, sizeof(RBNode));
     RBNode *y = calloc(1, sizeof(RBNode));
-    RBNode *root = x;
+    RBTree tree = { x };
 
     beta->p = y;
     gamma->p = y;
@@ -26,7 +22,7 @@ void test_rotate_left() {
     alpha->p = x;
     x->left = alpha;
 
-    rotate_left(&root, x);
+    rotate_left(&tree, x);
 
     // x tests
     TEST_ASSERT_EQUAL_PTR(x, alpha->p);
@@ -41,11 +37,7 @@ void test_rotate_left() {
     TEST_ASSERT_EQUAL_PTR(x, y->left);
     TEST_ASSERT_NULL(y->p);
 
-    free(alpha);
-    free(beta);
-    free(gamma);
-    free(x);
-    free(y);
+    free_tree(y);
 }
 
 void test_rotate_right() {
@@ -54,7 +46,7 @@ void test_rotate_right() {
     RBNode *gamma = calloc(1, sizeof(RBNode));
     RBNode *x = calloc(1, sizeof(RBNode));
     RBNode *y = calloc(1, sizeof(RBNode));
-    RBNode *root = y;
+    RBTree tree = { y };
 
     alpha->p = x;
     beta->p = x;
@@ -65,7 +57,7 @@ void test_rotate_right() {
     gamma->p = y;
     y->left = x;
 
-    rotate_right(&root, y);
+    rotate_right(&tree, y);
 
     // x tests
     TEST_ASSERT_EQUAL_PTR(x, alpha->p);
@@ -80,11 +72,7 @@ void test_rotate_right() {
     TEST_ASSERT_EQUAL_PTR(gamma, y->right);
     TEST_ASSERT_EQUAL_PTR(beta, y->left);
 
-    free(alpha);
-    free(beta);
-    free(gamma);
-    free(x);
-    free(y);
+    free_tree(x);
 }
 
 void test_insert_case1_left() {
@@ -92,9 +80,9 @@ void test_insert_case1_left() {
     RBNode *n2 = add_rbnode(5);
     RBNode *n3 = add_rbnode(10);
     RBNode *z = add_rbnode(6);
-    RBNode *root = n1;
+    RBTree tree = { n1 };
 
-    root->color = BLACK;
+    n1->color = BLACK;
 
     // Establish relationships
     n1->left = n2;
@@ -102,7 +90,7 @@ void test_insert_case1_left() {
     n2->p = n1;
     n3->p = n1;
 
-    insert(&root, z);
+    insert(&tree, z);
 
     // Test
     TEST_ASSERT_EQUAL_PTR(n2, z->p);
@@ -112,10 +100,7 @@ void test_insert_case1_left() {
     TEST_ASSERT_EQUAL_CHAR(BLACK, n3->color);
     TEST_ASSERT_EQUAL_CHAR(RED, z->color);
 
-    free(n1);
-    free(n2);
-    free(n3);
-    free(z);
+    free_tree(n1);
 }
 
 void test_insert_case2_left() {
@@ -126,9 +111,9 @@ void test_insert_case2_left() {
     RBNode *n5 = add_rbnode(6);
     RBNode *n6 = add_rbnode(2);
     RBNode *z = add_rbnode(3);
-    RBNode *root = n1;
+    RBTree tree = { n1 };
 
-    root->color = BLACK;
+    n1->color = BLACK;
 
     // Establish relationships
     n1->left = n2;
@@ -149,7 +134,7 @@ void test_insert_case2_left() {
     n4->color = BLACK;
     n5->color = BLACK;
 
-    insert(&root, z);
+    insert(&tree, z);
 
     // Test relationships
     TEST_ASSERT_EQUAL_PTR(n6, z->left);
@@ -166,13 +151,7 @@ void test_insert_case2_left() {
     TEST_ASSERT_EQUAL_CHAR(RED, n6->color);
     TEST_ASSERT_EQUAL_CHAR(BLACK, z->color);
 
-    free(n1);
-    free(n2);
-    free(n3);
-    free(n4);
-    free(n5);
-    free(n6);
-    free(z);
+    free_tree(n1);
 }
 
 void test_insert_case3_left() {
@@ -183,9 +162,9 @@ void test_insert_case3_left() {
     RBNode *n5 = add_rbnode(6);
     RBNode *n6 = add_rbnode(2);
     RBNode *z = add_rbnode(1);
-    RBNode *root = n1;
+    RBTree tree = { n1 };
 
-    root->color = BLACK;
+    n1->color = BLACK;
 
     // Establish relationships
     n1->left = n2;
@@ -206,7 +185,9 @@ void test_insert_case3_left() {
     n4->color = BLACK;
     n5->color = BLACK;
 
-    insert(&root, z);
+    insert(&tree, z);
+
+    print_tree(&tree);
 
     // Test relationships
     TEST_ASSERT_EQUAL_PTR(n6, n2->left);
@@ -223,13 +204,22 @@ void test_insert_case3_left() {
     TEST_ASSERT_EQUAL_CHAR(BLACK, n6->color);
     TEST_ASSERT_EQUAL_CHAR(RED, z->color);
 
-    free(n1);
-    free(n2);
-    free(n3);
-    free(n4);
-    free(n5);
-    free(n6);
-    free(z);
+    free_tree(n1);
+}
+
+void test_delete_case1() {
+    int numbers[] = { 10, 4, 20, 2, 6, 15, 25, 1, 3, 12, 17, 22, 30 };
+
+    RBTree tree = { 0 };
+
+    for (int i = 0; i < 13; i++) {
+        insert(&tree, add_rbnode(numbers[i]));
+    }
+    print_tree(&tree);
+
+    delete_node(&tree, tree.root->left->right);
+
+    print_tree(&tree);
 }
 
 // not needed when using generate_test_runner.rb
@@ -240,5 +230,6 @@ int main(void) {
     RUN_TEST(test_insert_case1_left);
     RUN_TEST(test_insert_case2_left);
     RUN_TEST(test_insert_case3_left);
+    RUN_TEST(test_delete_case1);
     return UNITY_END();
 }
