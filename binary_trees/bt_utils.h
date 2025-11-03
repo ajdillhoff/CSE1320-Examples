@@ -7,6 +7,7 @@
 typedef struct BTNode BTNode;
 struct BTNode {
     int data;
+    BTNode *p;
     BTNode *left;
     BTNode *right;
 };
@@ -29,6 +30,8 @@ Node *dequeue(Node **);
 void bfs(BTNode *);
 void dfs(BTNode *, traverse_type);
 void insert(BTNode **, int);
+BTNode *minimum(BTNode *);
+BTNode *successor(BTNode *);
 BTNode *search(BTNode *, int);
 void release_tree(BTNode *);
 

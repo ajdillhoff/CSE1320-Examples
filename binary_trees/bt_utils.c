@@ -78,7 +78,9 @@ void dfs(BTNode *root, traverse_type t) {
 
 void insert(BTNode **root, int val) {
     BTNode **temp = root;
+    BTNode *p = NULL;
     while (*temp != NULL) {
+        p = *temp;
         if (val >= (*temp)->data) {
             temp = &(*temp)->right;
         } else {
@@ -87,6 +89,30 @@ void insert(BTNode **root, int val) {
     }
 
     *temp = add_btnode(val);
+    (*temp)->p = p;
+}
+
+BTNode *minimum(BTNode *node) {
+    while (node->left != NULL) {
+        node = node->left;
+    }
+
+    return node;
+}
+
+BTNode *successor(BTNode *node) {
+    if (node->right != NULL) {
+        return minimum(node->right);
+    }
+
+    BTNode *y = node->p;
+
+    while (y != NULL && node != y->right) {
+        node = y;
+        y = y->p;
+    }
+
+    return y;
 }
 
 BTNode *search(BTNode *node, int val) {

@@ -50,6 +50,15 @@ void test_insert() {
 
     bfs(root);
 
+    printf("Parent check for 10: %d\n", root->p == NULL);
+    BTNode *eight = root->left;
+    printf("Parent check for 8: %d\n", eight->p == root);
+    BTNode *thirteen = root->right;
+    printf("Parent check for 13: %d\n", thirteen->p == root);
+    BTNode *four = eight->left;
+    printf("Parent check for 8: %d\n", four->p == eight);
+
+
     release_tree(root);
 }
 
