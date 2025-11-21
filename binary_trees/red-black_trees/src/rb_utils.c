@@ -249,7 +249,7 @@ RBNode *tree_minimum(RBNode *node) {
 
 void delete_fixup(RBTree *tree, RBNode *x) {
     RBNode *w = NULL;
-    printf("yeesh\n");
+    printf("[DEBUG] x = %p\n", x);
     while (x != tree->root && x->color == BLACK) {
         if (x == x->p->left) {
             w = x->p->right;
@@ -346,7 +346,7 @@ void delete_node(RBTree *tree, RBNode *z) {
         y->color = z->color;
     }
 
-    if (y_original_color == BLACK) {
+    if (x != NULL && y_original_color == BLACK) {
         delete_fixup(tree, x);
     }
 }
